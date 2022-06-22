@@ -19,4 +19,47 @@ ORDER BY payment_date ASC
 LIMIT 3
 
 -- Finding the three longest films available in the video rental store
+SELECT title, length FROM film
+ORDER BY length DESC
+LIMIT 3
+
+-- Finding the first five films that have been returned to the movie store
+SELECT * FROM rental
+ORDER BY return_date ASC
+LIMIT 5
+
+-- Finding when the customer number 24 returned the last four movies
+SELECT * FROM rental
+WHERE customer_id=24
+ORDER BY return_date DESC
+LIMIT 4
+
+-- Finding how many movies the customer 224 has rented
+SELECT count(*) FROM rental
+WHERE customer_id=224
+
+-- Finding how many movies have a renter rate higher than USD 3
+SELECT count(*) FROM film
+WHERE rental_rate > 3
+
+-- Finding how many movies start the title with the letter 'S'
+SELECT count(*) FROM film
+WHERE title LIKE 'S%'
+
+-- Finding the number of movies that have 'der' in the title
+SELECT count(*) FROM film
+WHERE title LIKE '%der%'
+-- Showing the titles
+SELECT title FROM film
+WHERE title LIKE '%der%'
+
+-- Finding how many movies have a rating of 'PG' or 'PG-13' AND a rental rate higher than USD 4
+SELECT count(*) FROM film
+WHERE rating IN ('PG','PG-13') AND rental_rate > 4
+
+-- Finding how many movies have 'at' in the title AND a rental rate higher than USD 4
+SELECT count(*) FROM film
+WHERE title LIKE '%at%' AND rental_rate > 4
+
+
 
