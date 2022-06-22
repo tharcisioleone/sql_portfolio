@@ -85,5 +85,30 @@ FROM payment
 GROUP BY DATE(payment_date)
 ORDER BY 2 DESC
 
+-- Finding the days in which the staff members received the highest number of payments
+SELECT DATE(payment_date), staff_id, COUNT(*)
+FROM payment
+GROUP BY DATE(payment_date), staff_id
+ORDER BY 3 DESC
+
+-- Finding the districts in which more than eight customers live
+SELECT district, COUNT(*) FROM address
+GROUP BY district
+HAVING COUNT(*) > 8
+ORDER BY 2 DESC
+
+-- Finding the total number of payments
+SELECT COUNT(*)
+FROM payment p
+INNER JOIN customer c
+ON c.customer_id = p.customer_id
+
+-- Finding the cities of the customer that start with the letter 'A'
+SELECT city, country
+FROM country
+FULL OUTER JOIN city
+ON city.country_id = country.country_id
+WHERE country LIKE 'A%'
+
 
 
