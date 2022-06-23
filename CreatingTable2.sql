@@ -1,30 +1,22 @@
--- 🔨 Construir e destruir: consultas introdutórias do SQL 🙂 --
+/* Author: Tharcisio Leone */
+/* Database: Users */
 
--- Criando bancos de dados
--- Escreva a instrução SQL correta para criar um novo banco de dados chamado myNewDB.
 
-CREATE DATABASE myNewDB; 
+		/********** 1. MANAGE DATABASES **********/
 
--- Grave a instrução SQL correta para visualizar todos os 
--- bancos de dados existentes em seu servidor de banco de dados.
+-- Creating the new database called myNewDB
+CREATE DATABASE users; 
 
+-- Visualize all the databases
 SHOW DATABASES; 
 
--- Escreva a instrução SQL correta para selecionar o banco de dados
--- myNewDB, para executar consultas adicionais.
+-- Excluding the new database
+DROP DATABASE users;
 
-USE myNewDB; 
 
--- Excluindo bancos de dados
--- Grave a instrução SQL correta para excluir um banco de dados chamado myNewDB.
+		/********** 2. TABLE USERS **********/
 
-DROP DATABASE myNewDb;
-
--- Criando tabelas
--- Escreva a instrução SQL correta para criar uma nova tabela chamada
--- Users, com um campo int chamado UserID e os seguintes campos varchar de
--- tamanho 255: LastName, FirstName, Address, City
-
+-- Creating table Users
 CREATE TABLE Users ( 
   UserID INT, 
   LastName VARCHAR(255), 
@@ -33,79 +25,44 @@ CREATE TABLE Users (
   City VARCHAR(255)
 );
 
--- Excluindo tabelas
--- Escreva a instrução SQL correta para excluir uma tabela chamada Users.
+-- Showing table with no values
+SELECT * FROM Users;
 
-DROP TABLE Users; 
-
--- Use a instrução TRUNCATE para excluir todos os dados da tabela Users.
-
-TRUNCATE TABLE Users;
-
--- Alterando tabelas
--- Adicione uma coluna do tipo DATE chamada Aniversário à tabela Usuários.
-
+-- Including a new column to the table
 ALTER TABLE Users
 ADD COLUMN Birthday DATE;
 
--- Exclua a coluna Aniversário da tabela Usuários.
-
+-- Excluding the created new column
 ALTER TABLE Users 
 DROP COLUMN Birthday;
 
--- Adicione as colunas varchar 
--- MiddleName, NickName, Email, Suffix e BadgeID
--- à tabela Users, com tamanho 255, com exceção de Suffix
--- que tem tamanho 64, usando uma única instrução.
-
+-- Adding new columns to the table with string data
 ALTER TABLE Users 
 ADD COLUMN MiddleName VARCHAR(255),
-ADD COLUMN FirstName VARCHAR(255),
 ADD COLUMN Email VARCHAR(255),
 ADD COLUMN Suffix VARCHAR(64), 
 ADD COLUMN BadgeID VARCHAR(255);
 
--- Exclua as colunas NickName e Suffix da tabela Users, usando uma única instrução.
-
+-- Excluding columns NickName and Suffix
 ALTER TABLE Users 
 DROP COLUMN NickName, 
 DROP COLUMN Suffix;
 
--- Renomeie a coluna MiddleName para Initial na tabela Users.
-
+-- Renaming the columns
 ALTER TABLE USERS 
 RENAME COLUMN MiddleName TO Initial;
 
--- Renomeie a coluna FirstName para First_Name e LastName para
--- Last_Name na tabela Users, em uma instrução, mantendo suas configurações originais.
-
-ALTER TABLE Users 
-RENAME COLUMN FirstName TO First_Name, 
-RENAME COLUMN LastName TO Last_Name;
-
--- Escreva uma consulta para exibir as colunas e configurações da tabela Usuários.
-
+-- Showing all the columns and setting of the table
 SELECT *
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = N'Users';
 
--- Inserindo registros
--- Insira um novo registro na tabela Alunos.
---
--- Esquema:
--- Nome do aluno,
--- Endereço,
--- Cidade,
--- Código postal,
--- País
---
--- Informações do registro para inserir:
---
--- Jane Doe
--- 57 Union St
--- Glasgow, Escócia
--- G13RB
 
+
+
+/********** 3. TABLE STUDENTS **********/
+
+-- Creating table
 CREATE TABLE Students
 ( 
   StudentID INT,
@@ -116,35 +73,30 @@ CREATE TABLE Students
   Country VARCHAR(255)
 );
 
+-- Showing all the columns
+SELECT * FROM Students;
+
+-- Including the records of the variables
 INSERT INTO Students(StudentID, StudentName, Address, City, PostalCode, Country)
-VALUES(1, 'Jane Doe', '57 Union St', 'Glassgow, Scotland', 'G13RB');
+VALUES(1, 'Jane Doe', '57 Union St', 'Glassgow', 'G13RB', 'Scotland');
 
--- Atualizando registros
--- Atualize a coluna Cidade de todos os registros na tabela Alunos e defina-a como "Edimburgo".
-
+-- Updating the records
 UPDATE Students
 SET City = 'Edinburgh';
 
--- Defina o valor das colunas Cidade para "Edimburgo", mas apenas aquelas
--- em que a coluna País tem o valor "Escócia".
-
+-- Updating the records, but with check
 UPDATE Students 
 SET City = 'Edinburgh'
 WHERE Country = 'Scotland';
 
--- Atualize o valor da Cidade e o valor do País para "Edinburgh", "Scotland" 
--- na tabela Estudantes, para o Estudante cujo ID é 35.
-
+-- Updating the records, but with double check
 UPDATE Students 
 SET City = 'Edinburgh', Country = 'Scotland' 
 WHERE StudentID = 35;
 
--- Excluindo registros
--- Exclua todos os registros da tabela Estudantes onde o valor do País é "Escócia".
-
+-- Excluding records
 DELETE FROM Students
 WHERE Country = 'Scotland';
 
--- Exclua todos os registros da tabela Alunos.
-
+-- Excluding all the records in the table
 DELETE FROM Students;
