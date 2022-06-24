@@ -99,4 +99,5 @@ DELETE FROM Students
 WHERE Country = 'Scotland';
 
 -- Excluding all the records in the table
-DELETE FROM Students;
+DELETE FROM Students
+
