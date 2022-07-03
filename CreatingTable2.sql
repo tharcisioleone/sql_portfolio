@@ -1,6 +1,7 @@
 /* Author: Tharcisio Leone */
 /* Database: Users */
 
+
 		/********** 1. MANAGE DATABASES **********/
 
 -- Creating the new database called myNewDB
@@ -11,6 +12,7 @@ SHOW DATABASES;
 
 -- Excluding the new database
 DROP DATABASE users;
+
 
 
 		/********** 2. TABLE USERS **********/
