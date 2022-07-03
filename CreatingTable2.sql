@@ -1,7 +1,6 @@
 /* Author: Tharcisio Leone */
 /* Database: Users */
 
-
 		/********** 1. MANAGE DATABASES **********/
 
 -- Creating the new database called myNewDB
