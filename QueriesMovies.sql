@@ -1,6 +1,7 @@
 /* Author: Tharcisio Leone */
 /* Database: dvdrental */
 
+
 -- Finding all the movies with a replacement cost higher than the average value
 SELECT title, replacement_cost FROM film
 WHERE replacement_cost >
