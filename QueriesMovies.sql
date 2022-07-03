@@ -8,6 +8,7 @@ WHERE replacement_cost >
 (SELECT ROUND(AVG(replacement_cost),2) FROM film)
 ORDER BY replacement_cost
 
+
 -- Finding all titles that have been rentered in year 2006
 SELECT title FROM film
 WHERE film_id IN
@@ -16,6 +17,7 @@ INNER JOIN rental r
 ON i.inventory_id = r.inventory_id
 WHERE DATE(rental_date) BETWEEN '2006-01-01' AND '2007-01-01')
 
+
 -- Finding all the customers that have paid in the month of May
 SELECT first_name, last_name
 FROM customer c
@@ -23,6 +25,7 @@ WHERE EXISTS
 (SELECT * FROM payment p
 WHERE c.customer_id = p.customer_id
 AND EXTRACT (month from payment_date)=5)
+
 
 -- Finding all the movies with the same time duration but with different replacement costs
 SELECT f1.title as t1, f2.title as t2, f1.length as l1,
